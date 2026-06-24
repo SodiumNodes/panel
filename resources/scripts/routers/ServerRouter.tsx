@@ -15,11 +15,12 @@ import SubNavigation from '@/components/elements/SubNavigation';
 import InstallListener from '@/components/server/InstallListener';
 import ErrorBoundary from '@/components/elements/ErrorBoundary';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt, faTerminal } from '@fortawesome/free-solid-svg-icons';
 import { useLocation } from 'react-router';
 import ConflictStateRenderer from '@/components/server/ConflictStateRenderer';
 import PermissionRoute from '@/components/elements/PermissionRoute';
 import routes from '@/routers/routes';
+import tw from 'twin.macro';
 
 export default () => {
     const match = useRouteMatch<{ id: string }>();
@@ -73,6 +74,8 @@ export default () => {
                 )
             ) : (
                 <>
+                    <InstallListener />
+                    <TransferListener />
                     <CSSTransition timeout={150} classNames={'fade'} appear in>
                         <SubNavigation>
                             <div>
@@ -82,15 +85,16 @@ export default () => {
                                         route.permission ? (
                                             <Can key={route.path} action={route.permission} matchAny>
                                                 <NavLink to={to(route.path, true)} exact={route.exact}>
-                                                    {route.name}
+                                                    {<FontAwesomeIcon icon={route.name}/>}
                                                 </NavLink>
                                             </Can>
                                         ) : (
                                             <NavLink key={route.path} to={to(route.path, true)} exact={route.exact}>
-                                                {route.name}
+                                                {<FontAwesomeIcon icon={route.name}/>}
                                             </NavLink>
                                         )
                                     )}
+                                <div css={tw`my-3 border-b border-b-neutral-800`}></div>
                                 {rootAdmin && (
                                     // eslint-disable-next-line react/jsx-no-target-blank
                                     <a href={`/admin/servers/view/${serverId}`} target={'_blank'}>
@@ -100,9 +104,6 @@ export default () => {
                             </div>
                         </SubNavigation>
                     </CSSTransition>
-                    <InstallListener />
-                    <TransferListener />
-                    <WebsocketHandler />
                     {inConflictState && (!rootAdmin || (rootAdmin && !location.pathname.endsWith(`/server/${id}`))) ? (
                         <ConflictStateRenderer />
                     ) : (

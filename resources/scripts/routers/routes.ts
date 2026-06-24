@@ -13,6 +13,8 @@ import AccountApiContainer from '@/components/dashboard/AccountApiContainer';
 import AccountSSHContainer from '@/components/dashboard/ssh/AccountSSHContainer';
 import ActivityLogContainer from '@/components/dashboard/activity/ActivityLogContainer';
 import ServerActivityLogContainer from '@/components/server/ServerActivityLogContainer';
+import { faArchive, faCalendar, faChartLine, faCog, faDatabase, faFile, faHome, faKey, faNetworkWired, faPlayCircle, faTerminal, faUser } from '@fortawesome/free-solid-svg-icons';
+import DashboardContainer from '@/components/dashboard/DashboardContainer';
 
 // Each of the router files is already code split out appropriately — so
 // all of the items above will only be loaded in when that router is loaded.
@@ -36,48 +38,27 @@ interface ServerRouteDefinition extends RouteDefinition {
 }
 
 interface Routes {
+    home: RouteDefinition[];
     // All of the routes available under "/account"
     account: RouteDefinition[];
     // All of the routes available under "/server/:id"
     server: ServerRouteDefinition[];
+
 }
 
 export default {
-    account: [
-        {
-            path: '/',
-            name: 'Account',
-            component: AccountOverviewContainer,
-            exact: true,
-        },
-        {
-            path: '/api',
-            name: 'API Credentials',
-            component: AccountApiContainer,
-        },
-        {
-            path: '/ssh',
-            name: 'SSH Keys',
-            component: AccountSSHContainer,
-        },
-        {
-            path: '/activity',
-            name: 'Activity',
-            component: ActivityLogContainer,
-        },
-    ],
     server: [
         {
             path: '/',
             permission: null,
-            name: 'Console',
+            name: faTerminal,
             component: ServerConsole,
             exact: true,
         },
         {
             path: '/files',
             permission: 'file.*',
-            name: 'Files',
+            name: faFile,
             component: FileManagerContainer,
         },
         {
@@ -89,13 +70,13 @@ export default {
         {
             path: '/databases',
             permission: 'database.*',
-            name: 'Databases',
+            name: faDatabase,
             component: DatabasesContainer,
         },
         {
             path: '/schedules',
             permission: 'schedule.*',
-            name: 'Schedules',
+            name: faCalendar,
             component: ScheduleContainer,
         },
         {
@@ -107,38 +88,61 @@ export default {
         {
             path: '/users',
             permission: 'user.*',
-            name: 'Users',
+            name: faUser,
             component: UsersContainer,
         },
         {
             path: '/backups',
             permission: 'backup.*',
-            name: 'Backups',
+            name: faArchive,
             component: BackupContainer,
         },
         {
             path: '/network',
             permission: 'allocation.*',
-            name: 'Network',
+            name: faNetworkWired,
             component: NetworkContainer,
         },
         {
             path: '/startup',
             permission: 'startup.*',
-            name: 'Startup',
+            name: faPlayCircle,
             component: StartupContainer,
         },
         {
             path: '/settings',
             permission: ['settings.*', 'file.sftp'],
-            name: 'Settings',
+            name: faCog,
             component: SettingsContainer,
         },
         {
             path: '/activity',
             permission: 'activity.*',
-            name: 'Activity',
+            name: faChartLine,
             component: ServerActivityLogContainer,
         },
     ],
+    home: [
+        {
+            path: '/',
+            name: faHome,
+            component: DashboardContainer,
+            exact: true,
+        },
+        {
+            path: '/api',
+            name: faKey,
+            component: AccountApiContainer,
+        },
+        {
+            path: '/ssh',
+            name: faTerminal,
+            component: AccountSSHContainer,
+        },
+        {
+            path: '/activity',
+            name: faChartLine,
+            component: ActivityLogContainer,
+        },
+    ]
 } as Routes;

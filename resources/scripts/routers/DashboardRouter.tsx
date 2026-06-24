@@ -8,6 +8,7 @@ import SubNavigation from '@/components/elements/SubNavigation';
 import { useLocation } from 'react-router';
 import Spinner from '@/components/elements/Spinner';
 import routes from '@/routers/routes';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default () => {
     const location = useLocation();
@@ -15,14 +16,27 @@ export default () => {
     return (
         <>
             <NavigationBar />
-            {location.pathname.startsWith('/account') && (
+            {location.pathname == '/' && (
                 <SubNavigation>
                     <div>
-                        {routes.account
+                        {routes.home
                             .filter((route) => !!route.name)
                             .map(({ path, name, exact = false }) => (
                                 <NavLink key={path} to={`/account/${path}`.replace('//', '/')} exact={exact}>
-                                    {name}
+                                    <FontAwesomeIcon icon={name} />
+                                </NavLink>
+                            ))}
+                    </div>
+                </SubNavigation>
+            )}
+            {location.pathname.startsWith('/account') && (
+                <SubNavigation>
+                    <div>
+                        {routes.home
+                            .filter((route) => !!route.name)
+                            .map(({ path, name, exact = false }) => (
+                                <NavLink key={path} to={`/account/${path}`.replace('//', '/')} exact={exact}>
+                                    <FontAwesomeIcon icon={name} />
                                 </NavLink>
                             ))}
                     </div>
@@ -34,7 +48,7 @@ export default () => {
                         <Route path={'/'} exact>
                             <DashboardContainer />
                         </Route>
-                        {routes.account.map(({ path, component: Component }) => (
+                        {routes.home.map(({ path, component: Component }) => (
                             <Route key={path} path={`/account/${path}`.replace('//', '/')} exact>
                                 <Component />
                             </Route>

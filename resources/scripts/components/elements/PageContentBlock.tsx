@@ -20,11 +20,13 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({ title, showFlashKey
     return (
         <CSSTransition timeout={150} classNames={'fade'} appear in>
             <>
-                <ContentContainer css={tw`my-4 sm:my-10`} className={className}>
+            <div className="w-full flex justify-center">
+                <div css={tw`relative w-full max-w-[1200px] ml-[6.5rem] mr-[1.5rem] mt-[100px] h-screen`} className={className}>
                     {showFlashKey && <FlashMessageRender byKey={showFlashKey} css={tw`mb-4`} />}
                     {children}
-                </ContentContainer>
-                <ContentContainer css={tw`mb-4`}>
+                </div>
+                </div>
+                <ContentContainer css={tw`mt-4`}>
                     <p css={tw`text-center text-neutral-500 text-xs`}>
                         <a
                             rel={'noopener nofollow noreferrer'}

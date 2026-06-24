@@ -4,6 +4,8 @@ import Can from '@/components/elements/Can';
 import { ServerContext } from '@/state/server';
 import { PowerAction } from '@/components/server/console/ServerConsoleContainer';
 import { Dialog } from '@/components/elements/dialog';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlayCircle, faPowerOff, faSync } from '@fortawesome/free-solid-svg-icons';
 
 interface PowerButtonProps {
     className?: string;
@@ -49,27 +51,25 @@ export default ({ className }: PowerButtonProps) => {
                 Forcibly stopping a server can lead to data corruption.
             </Dialog.Confirm>
             <Can action={'control.start'}>
-                <Button
-                    className={'flex-1'}
+                <button 
+                    className={'transition-colors cursor-pointer text-green-500 hover:text-green-400 disabled:text-neutral-600'}
                     disabled={status !== 'offline'}
-                    onClick={onButtonClick.bind(this, 'start')}
-                >
-                    Start
-                </Button>
+                    onClick={onButtonClick.bind(this, 'start')}>
+                        <FontAwesomeIcon icon={faPlayCircle} />
+                    </button>
             </Can>
             <Can action={'control.restart'}>
-                <Button.Text className={'flex-1'} disabled={!status} onClick={onButtonClick.bind(this, 'restart')}>
-                    Restart
-                </Button.Text>
+                <button className={'transition-colors cursor-pointer text-yellow-500 hover:text-yellow-400 disabled:text-neutral-600'} disabled={!status} onClick={onButtonClick.bind(this, 'restart')}><FontAwesomeIcon  icon={faSync}/></button>
             </Can>
             <Can action={'control.stop'}>
-                <Button.Danger
-                    className={'flex-1'}
+                <button
+                    className={'transition-colors cursor-pointer text-red-500 hover:text-red-400 disabled:text-neutral-600'}
                     disabled={status === 'offline'}
                     onClick={onButtonClick.bind(this, killable ? 'kill' : 'stop')}
                 >
-                    {killable ? 'Kill' : 'Stop'}
-                </Button.Danger>
+                    <FontAwesomeIcon  icon={faPowerOff} />
+                </button>
+
             </Can>
         </div>
     );

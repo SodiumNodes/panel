@@ -12,6 +12,8 @@ import http from '@/api/http';
 import SpinnerOverlay from '@/components/elements/SpinnerOverlay';
 import Tooltip from '@/components/elements/tooltip/Tooltip';
 import Avatar from '@/components/Avatar';
+import WebsocketHandler from './server/WebsocketHandler';
+import { ServerContext } from '@/state/server';
 
 const RightNavigation = styled.div`
     & > a,
@@ -46,7 +48,12 @@ export default () => {
     };
 
     return (
-        <div className={'w-full bg-neutral-900 shadow-md overflow-x-auto'}>
+        <div className="fixed top-0 w-full z-[999]">
+        <ServerContext.Provider>
+        <WebsocketHandler />
+        </ServerContext.Provider>
+        <div className={'bg-black shadow-md h-[64px]'}>
+            <div className="h-full flex items-center justify-center">
             <SpinnerOverlay visible={isLoggingOut} />
             <div className={'mx-auto w-full flex items-center h-[3.5rem] max-w-[1200px]'}>
                 <div id={'logo'} className={'flex-1'}>
@@ -87,6 +94,8 @@ export default () => {
                     </Tooltip>
                 </RightNavigation>
             </div>
+        </div>
+        </div>
         </div>
     );
 };

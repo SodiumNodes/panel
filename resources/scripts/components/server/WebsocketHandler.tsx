@@ -13,7 +13,9 @@ export default () => {
     let updatingToken = false;
     const [error, setError] = useState<'connecting' | string>('');
     const { connected, instance } = ServerContext.useStoreState((state) => state.socket);
+
     const uuid = ServerContext.useStoreState((state) => state.server.data?.uuid);
+
     const setServerStatus = ServerContext.useStoreActions((actions) => actions.status.setServerStatus);
     const { setInstance, setConnectionState } = ServerContext.useStoreActions((actions) => actions.socket);
 
@@ -109,7 +111,7 @@ export default () => {
 
     return error ? (
         <CSSTransition timeout={150} in appear classNames={'fade'}>
-            <div css={tw`bg-red-500 py-2`}>
+            <div css={tw`bg-red-500 py-2 fixed z-[100] top-[10%] left-1/2`} style={`transform: translateX(-50%)`}>
                 <ContentContainer css={tw`flex items-center justify-center`}>
                     {error === 'connecting' ? (
                         <>
