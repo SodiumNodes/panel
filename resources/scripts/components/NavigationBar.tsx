@@ -53,7 +53,7 @@ export default () => {
         <WebsocketHandler />
         </ServerContext.Provider>
         <div className={'bg-black shadow-md h-[64px]'}>
-            <div className="h-full flex items-center justify-center">
+            <div className="h-full w-full flex overflow-x-scroll overflow-y-hidden items-center justify-center">
             <SpinnerOverlay visible={isLoggingOut} />
             <div className={'mx-auto w-full flex items-center h-[3.5rem] max-w-[1200px]'}>
                 <div id={'logo'} className={'flex-1'}>
