@@ -28,7 +28,7 @@ module.exports = {
                 // in new code.
                 green: colors.green,
                 primary: colors.blue,
-                gray: gray,
+                gray: colors.neutral,
                 neutral: colors.neutral,
                 cyan: colors.cyan,
             },
