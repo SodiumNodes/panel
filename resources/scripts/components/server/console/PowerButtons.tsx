@@ -52,18 +52,18 @@ export default ({ className }: PowerButtonProps) => {
             </Dialog.Confirm>
             <Can action={'control.start'}>
                 <button 
-                    className={'transition-colors cursor-pointer text-green-500 hover:text-green-400 disabled:text-neutral-600'}
+                    className={`transition-colors ${status !== 'offline' ? 'cursor-pointer' : 'cursor-not-allowed'} text-green-500 hover:text-green-400 disabled:text-neutral-600`}
                     disabled={status !== 'offline'}
                     onClick={onButtonClick.bind(this, 'start')}>
                         <FontAwesomeIcon icon={faPlayCircle} />
                     </button>
             </Can>
             <Can action={'control.restart'}>
-                <button className={'transition-colors cursor-pointer text-yellow-500 hover:text-yellow-400 disabled:text-neutral-600'} disabled={!status} onClick={onButtonClick.bind(this, 'restart')}><FontAwesomeIcon  icon={faSync}/></button>
+                <button className={`transition-colors ${ !status ? 'cursor-not-allowed' : 'cursor-pointer'} text-yellow-500 hover:text-yellow-400 disabled:text-neutral-600`} disabled={!status} onClick={onButtonClick.bind(this, 'restart')}><FontAwesomeIcon  icon={faSync}/></button>
             </Can>
             <Can action={'control.stop'}>
                 <button
-                    className={'transition-colors cursor-pointer text-red-500 hover:text-red-400 disabled:text-neutral-600'}
+                    className={`transition-colors ${status === 'offline' ? 'cursor-not-allowed' : 'cursor-pointer'} text-red-500 hover:text-red-400 disabled:text-neutral-600`}
                     disabled={status === 'offline'}
                     onClick={onButtonClick.bind(this, killable ? 'kill' : 'stop')}
                 >

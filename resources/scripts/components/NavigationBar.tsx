@@ -48,7 +48,7 @@ export default () => {
     };
 
     return (
-        <div className="fixed top-0 w-full z-[999]">
+        <div className="sticky top-0 w-full z-[999]">
         <ServerContext.Provider>
         <WebsocketHandler />
         </ServerContext.Provider>
