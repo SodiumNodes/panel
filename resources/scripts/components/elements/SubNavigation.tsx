@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 import tw, { theme } from 'twin.macro';
 
 const SubNavigation = styled.div`
-    ${tw`top-0 pt-[64px] fixed z-[900] h-screen bg-neutral-800 shadow overflow-x-auto w-[72px]`};
+    ${tw`top-0 pt-[72px] fixed z-[900] h-screen bg-neutral-800 shadow overflow-x-auto w-[72px]`};
 
     & > div {
         ${tw`flex flex-col text-sm mx-auto items-center`};

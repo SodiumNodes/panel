@@ -31,7 +31,7 @@
     }
 
     & > .container {
-        @apply rounded-t p-1 sm:p-2 bg-black min-h-[16rem] flex-1 font-mono text-sm;
+        @apply rounded-t p-1 sm:p-2 bg-transparent min-h-[16rem] flex-1 font-mono text-sm;
 
         & #terminal {
             @apply h-full;

@@ -49,13 +49,10 @@ export default () => {
 
     return (
         <div className="sticky top-0 w-full z-[999]">
-        <ServerContext.Provider>
-        <WebsocketHandler />
-        </ServerContext.Provider>
-        <div className={'bg-black shadow-md h-[64px]'}>
-            <div className="h-full w-full flex overflow-x-scroll overflow-y-hidden items-center justify-center">
+        <div className={'bg-black shadow-md'}>
+            <div className="h-full w-full py-3 flex overflow-x-auto overflow-y-hidden items-center">
             <SpinnerOverlay visible={isLoggingOut} />
-            <div className={'mx-auto w-full flex items-center h-[3.5rem] max-w-[1200px]'}>
+            <div className={'mx-auto w-full h-full flex items-center max-w-[1200px]'}>
                 <div id={'logo'} className={'flex-1'}>
                     <Link
                         to={'/'}
@@ -66,7 +63,7 @@ export default () => {
                         {name}
                     </Link>
                 </div>
-                <RightNavigation className={'flex h-full items-center justify-center'}>
+                <RightNavigation className={'flex h-full items-center'}>
                     <SearchContainer />
                     <Tooltip placement={'bottom'} content={'Dashboard'}>
                         <NavLink to={'/'} exact>
@@ -96,6 +93,9 @@ export default () => {
             </div>
         </div>
         </div>
+        <ServerContext.Provider>
+        <WebsocketHandler />
+        </ServerContext.Provider>
         </div>
     );
 };
