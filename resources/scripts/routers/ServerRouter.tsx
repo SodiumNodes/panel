@@ -35,14 +35,12 @@ export default () => {
     const serverId = ServerContext.useStoreState((state) => state.server.data?.internalId);
     const getServer = ServerContext.useStoreActions((actions) => actions.server.getServer);
     const clearServerState = ServerContext.useStoreActions((actions) => actions.clearServerState);
-
     const to = (value: string, url = false) => {
         if (value === '/') {
             return url ? match.url : match.path;
         }
         return `${(url ? match.url : match.path).replace(/\/*$/, '')}/${value.replace(/^\/+/, '')}`;
     };
-
     useEffect(
         () => () => {
             clearServerState();
@@ -103,6 +101,8 @@ export default () => {
                                 )}
                             </div>
                         </SubNavigation>
+                        
+
                     </CSSTransition>
                     {inConflictState && (!rootAdmin || (rootAdmin && !location.pathname.endsWith(`/server/${id}`))) ? (
                         <ConflictStateRenderer />

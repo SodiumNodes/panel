@@ -52,22 +52,42 @@ export default ({ className }: PowerButtonProps) => {
             </Dialog.Confirm>
             <Can action={'control.start'}>
                 <button 
-                    className={`transition-colors ${status !== 'offline' ? 'cursor-pointer' : 'cursor-not-allowed'} text-green-500 hover:text-green-400 disabled:text-neutral-600`}
-                    disabled={status !== 'offline'}
+                    className={` ${!status || status === 'offline' ? 'cursor-not-allowed' : 'cursor-pointer'}
+                    transition-colors
+                    px-5 py-2 rounded-md
+                    text-green-500 bg-green-600
+                    hover:text-green-400
+                    disabled:text-neutral-400 disabled:bg-neutral-600`}
+                    disabled={!status || status === 'offline'}
                     onClick={onButtonClick.bind(this, 'start')}>
-                        <FontAwesomeIcon icon={faPlayCircle} />
-                    </button>
+                        <FontAwesomeIcon icon={faPlayCircle} className='text-green-500'/> Start
+                </button>
             </Can>
             <Can action={'control.restart'}>
-                <button className={`transition-colors ${ !status ? 'cursor-not-allowed' : 'cursor-pointer'} text-yellow-500 hover:text-yellow-400 disabled:text-neutral-600`} disabled={!status} onClick={onButtonClick.bind(this, 'restart')}><FontAwesomeIcon  icon={faSync}/></button>
+                <button
+                className={`${ !status ? 'cursor-not-allowed' : 'cursor-pointer'}
+                transition-colors
+                px-5 py-2 rounded-md
+                text-yellow-500 bg-yellow-600
+                hover:text-yellow-400
+                disabled:text-neutral-400 disabled:bg-neutral-600`}
+                disabled={!status}
+                onClick={onButtonClick.bind(this, 'restart')}>
+                    <FontAwesomeIcon  icon={faSync} className='text-yellow-500'/> Restart
+                </button>
             </Can>
             <Can action={'control.stop'}>
                 <button
-                    className={`transition-colors ${status === 'offline' ? 'cursor-not-allowed' : 'cursor-pointer'} text-red-500 hover:text-red-400 disabled:text-neutral-600`}
-                    disabled={status === 'offline'}
+                    className={`${!status || status === 'offline' ? 'cursor-not-allowed' : 'cursor-pointer'}
+                    transition-colors 
+                    px-5 py-2 rounded-md
+                    text-red-500 bg-red-600
+                    hover:text-red-400
+                    disabled:text-neutral-400 disabled:bg-neutral-600`}
+                    disabled={!status || status === 'offline'}
                     onClick={onButtonClick.bind(this, killable ? 'kill' : 'stop')}
                 >
-                    <FontAwesomeIcon  icon={faPowerOff} />
+                    <FontAwesomeIcon icon={faPowerOff} className='text-red-500'/> Stop
                 </button>
 
             </Can>

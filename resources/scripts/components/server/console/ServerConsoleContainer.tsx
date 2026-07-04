@@ -34,19 +34,6 @@ const ServerConsoleContainer = () => {
                         : 'This server is currently being transferred to another node and all actions are unavailable.'}
                 </Alert>
             )}
-                    <Can action={['control.start', 'control.stop', 'control.restart']} matchAny>
-                        <PowerButtons className={'flex gap-2 text-xl'} />
-                    </Can>
-            <div className={'grid grid-cols-4 gap-4 mb-4'}>
-                <div className={'hidden sm:block sm:col-span-2 lg:col-span-3 pr-4'}>
-                    <h1 className={'font-header font-medium text-2xl text-gray-50 leading-relaxed line-clamp-1'}>
-                        {name}
-                    </h1>
-                    <p className={'text-sm line-clamp-2'}>{description}</p>
-                </div>
-                <div className={'col-span-4 sm:col-span-2 lg:col-span-1 self-end'}>
-                </div>
-            </div>
             <div className={'grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-4 mb-4 w-full'}>
                 <div className={'flex col-span-4 lg:col-span-3'}>
                     <Spinner.Suspense>

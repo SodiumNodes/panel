@@ -16,6 +16,7 @@ import StatBlock from '@/components/server/console/StatBlock';
 import useWebsocketEvent from '@/plugins/useWebsocketEvent';
 import classNames from 'classnames';
 import { capitalize } from '@/lib/strings';
+import tw from 'twin.macro';
 
 type Stats = Record<'memory' | 'cpu' | 'disk' | 'uptime' | 'rx' | 'tx', number>;
 
@@ -24,9 +25,9 @@ const getBackgroundColor = (value: number, max: number | null): string | undefin
 
     if (delta > 0.8) {
         if (delta > 0.9) {
-            return 'bg-red-500';
+            return 'text-red-500';
         }
-        return 'bg-yellow-500';
+        return 'text-yellow-500';
     }
 
     return undefined;
@@ -96,8 +97,7 @@ const ServerDetailsBlock = ({ className }: { className?: string }) => {
             <StatBlock
                 icon={faClock}
                 title={'Uptime'}
-                color={getBackgroundColor(status === 'running' ? 0 : status !== 'offline' ? 9 : 10, 10)}
-            >
+                color={getBackgroundColor(status === 'running' ? 0 : status !== 'offline' ? 9 : 10, 10)}>
                 {status === null ? (
                     'Offline'
                 ) : stats.uptime > 0 ? (
