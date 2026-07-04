@@ -19,7 +19,7 @@ const RightNavigation = styled.div`
     & > a,
     & > button,
     & > .navigation-link {
-        ${tw`flex items-center h-full no-underline text-neutral-300 px-6 cursor-pointer transition-all duration-150`};
+        ${tw`flex items-center py-5 h-full no-underline text-neutral-300 px-6 cursor-pointer transition-all duration-150`};
 
         &:active,
         &:hover {
@@ -29,7 +29,7 @@ const RightNavigation = styled.div`
         &:active,
         &:hover,
         &.active {
-            box-shadow: inset 0 -2px ${theme`colors.cyan.600`.toString()};
+            ${tw`bg-green-600/40 border-b border-b-green-600`};
         }
     }
 `;
@@ -50,7 +50,7 @@ export default () => {
     return (
         <div className="sticky top-0 w-full z-[999]">
         <div className={'bg-black shadow-md'}>
-            <div className="h-full w-full py-3 flex overflow-x-auto overflow-y-hidden items-center">
+            <div className="h-full w-full flex overflow-x-auto overflow-y-hidden items-center">
             <SpinnerOverlay visible={isLoggingOut} />
             <div className={'mx-auto w-full h-full flex items-center max-w-[1200px]'}>
                 <div id={'logo'} className={'flex-1'}>

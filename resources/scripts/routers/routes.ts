@@ -126,7 +126,7 @@ export default {
         {
             path: '/',
             name: faHome,
-            component: DashboardContainer,
+            component: AccountOverviewContainer,
             exact: true,
         },
         {
