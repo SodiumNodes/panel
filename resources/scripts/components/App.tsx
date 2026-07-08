@@ -62,6 +62,7 @@ const App = () => {
             <StoreProvider store={store}>
                 <ProgressBar />
                     <Router history={history}>
+
                         <Switch>
                             <Route path={'/auth'}>
                                 <Spinner.Suspense>

@@ -21,7 +21,12 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({ title, showFlashKey
         <CSSTransition timeout={150} classNames={'fade'} appear in>
             <>
             <div className="w-full flex justify-center">
-                <div css={tw`relative w-full max-w-[1200px] ml-[6.5rem] mr-[1.5rem] mt-[100px] min-h-screen`} className={className}>
+                <div css={tw`md:p-10 relative w-full md:ml-[72px] p-5 min-h-screen`} className={className}>
+                    <div className="my-3">
+                        <span className='text-xl'>Beta panel warning</span>
+                        <p>This is a beta version of the upcoming panel for SodiumNodes, meaning you may encounter visual bugs.</p>
+                        <p>Any visual bugs should be reported through a tech support ticket.</p>
+                    </div>
                     {showFlashKey && <FlashMessageRender byKey={showFlashKey} css={tw`mb-4`} />}
                     {children}
                 </div>

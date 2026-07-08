@@ -131,15 +131,18 @@ export default ({ server, className }: { server: Server; className?: string }) =
                         </div>
                     ) : server.isTransferring || server.status ? (
                         <div css={tw`flex-1 text-center`}>
-                            <span css={tw`bg-neutral-500 rounded px-2 py-1 text-neutral-100 text-xs`}>
-                                {server.isTransferring
-                                    ? 'Transferring'
-                                    : server.status === 'installing'
-                                    ? 'Installing'
-                                    : server.status === 'restoring_backup'
-                                    ? 'Restoring Backup'
-                                    : 'Unavailable'}
-                            </span>
+                            {server.isTransferring &&
+                            <span css={tw`bg-blue-500 rounded px-2 py-1 text-neutral-100 text-xs`}>Transferring</span>
+                            }
+                            {server.status === "installing" &&
+                                <span css={tw`bg-green-500 rounded px-2 py-1 text-neutral-100 text-xs`}>Installing</span>
+                            }
+
+                            {server.status == "restoring_backup" &&
+                                <span css={tw`bg-blue-500 rounded px-2 py-1 text-neutral-100 text-xs`}>Restoring Backup</span>
+                            }
+                            {server.status == "install_failed" && <span css={tw`bg-red-500 rounded px-2 py-1 text-neutral-100 text-xs`}>Failed Installation</span>}
+                            
                         </div>
                     ) : (
                         <Spinner size={'small'} />
